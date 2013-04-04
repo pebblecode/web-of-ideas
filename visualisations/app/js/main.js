@@ -6,7 +6,14 @@
       w = 1280 - m[1] - m[3],
       h = 800 - m[0] - m[2],
       i = 0,
-      root;
+      root,
+      maxViews = 200; // TODO: Calculate this from json
+
+
+  var circleSize = d3.scale.linear()
+        .domain([0, maxViews])
+        .range([10, 50]);
+
 
   var tree = d3.layout.tree()
       .size([h, w]);
@@ -73,7 +80,9 @@
         .on("click", function(d) { toggle(d); update(d); });
 
     nodeEnter.append("svg:circle")
-        .attr("r", 1e-6)
+        .attr("r", function(d) {
+          return circleSize(d.views);
+        })
         .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
     nodeEnter.append("svg:text")
@@ -89,7 +98,9 @@
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     nodeUpdate.select("circle")
-        .attr("r", 4.5)
+        .attr("r", function(d) {
+          return circleSize(d.views);
+        })
         .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
     nodeUpdate.select("text")
@@ -101,12 +112,8 @@
         .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
         .remove();
 
-    var maxViews = 200,
-      circleSize = d3.scale.linear()
-        .domain([0, maxViews])
-        .range([1, 50]);
-    node.append("svg:circle")
-        .attr("r", function(d) {
+    nodeExit.select("circle")
+      .attr("r", function(d) {
           return circleSize(d.views);
         });
 
