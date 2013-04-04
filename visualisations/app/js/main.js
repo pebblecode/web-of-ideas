@@ -52,7 +52,7 @@
       }
     }
 
-    // Initialize the display to show a few nodes.
+    // Initialize the display to show the children of the root.
     root.children.forEach(toggleAll);
 
     update(root);
