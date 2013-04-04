@@ -17,6 +17,19 @@
     .append("svg:g")
       .attr("transform", "translate(40, 0)");
 
+  var voteDataClass = function voteDataClass(d) {
+    var voteClass = "";
+
+    if (d.vote > 0) {
+      voteClass = "positive";
+    } else if (d.vote < 0) {
+      voteClass = "negative";
+    } else {
+      voteClass = "zero";
+    }
+    return "vote-" + voteClass;
+  };
+
   d3.json("../data/ideas.json", function(json) {
     var nodes = cluster.nodes(json);
 
@@ -29,7 +42,10 @@
     var node = vis.selectAll("g.node")
         .data(nodes)
       .enter().append("svg:g")
-        .attr("class", "node")
+        .attr("class", function (d) {
+          return "node " + voteDataClass(d);
+        })
+        .attr("data-vote", function(d) { return d.vote; })
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
     node.append("svg:circle")

@@ -1,19 +1,37 @@
 {
- "name": "Create an internal linked in",
- "children": [
-  {
-   "name": "Why?",
-   "children": [
+  "name": "Create an internal linked in",
+  "vote": 4,
+  "views": 10,
+  "children": [
     {
-     "name": "Why not?",
-     "children": [
-      {"name": "Why?"},
-      {"name": "How?"},
-      {"name": "What else is around?"}
-     ]
+      "name": "Why?",
+      "vote": 3,
+      "views": 100,
+      "children": [
+        {
+          "name": "Why not?",
+          "views": 10,
+          "vote": -5
+        }
+      ]
+    },
+    {
+      "name": "How?",
+      "views": 10,
+      "vote": 6,
+      "children": [
+        {
+          "name": "Nas will build it",
+          "views": 0,
+          "vote": 0
+        }
+      ]
+    },
+    {
+      "name": "What else is around?",
+      "views": 200,
+      "vote": 10
     }
-   ]
-  }
- ]
+  ]
 }
 

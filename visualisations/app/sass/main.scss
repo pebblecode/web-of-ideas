@@ -19,3 +19,18 @@ body {
   stroke: #ccc;
   stroke-width: 1.5px;
 }
+
+.vote-positive circle {
+  stroke: blue;
+  fill: blue;
+}
+
+.vote-negative circle {
+  stroke: red;
+  fill: red;
+}
+
+.vote-zero circle {
+  stroke: gray;
+  fill: gray;
+}
