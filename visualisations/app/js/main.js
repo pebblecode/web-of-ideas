@@ -48,8 +48,14 @@
         .attr("data-vote", function(d) { return d.vote; })
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
+    var maxViews = 200,
+      circleSize = d3.scale.linear()
+        .domain([0, maxViews])
+        .range([1, 50]);
     node.append("svg:circle")
-        .attr("r", 4.5);
+        .attr("r", function(d) {
+          return circleSize(d.views);
+        });
 
     node.append("svg:text")
         .attr("dx", function(d) { return d.children ? -8 : 8; })
