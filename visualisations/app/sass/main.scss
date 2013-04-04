@@ -2,8 +2,11 @@ body {
 
   &.inner {
     background: none;
-  }
 
+    p {
+      font: 10px sans-serif;
+    }
+  }
 }
 
 // Visualisation styles

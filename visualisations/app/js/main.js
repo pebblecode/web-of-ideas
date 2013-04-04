@@ -90,7 +90,7 @@
         .attr("dy", ".35em")
         .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
         .style("fill-opacity", 1e-6)
-        .attr("width", 200)
+        .attr("width", 100)
         .attr("height", 200)
         .append("xhtml:body")
           .attr("class", "inner")

@@ -1,5 +1,7 @@
 body.inner {
   background: none; }
+  body.inner p {
+    font: 10px sans-serif; }
 
 .node circle {
   fill: #fff;
