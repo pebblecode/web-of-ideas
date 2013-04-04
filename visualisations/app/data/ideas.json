@@ -5,13 +5,32 @@
   "children": [
     {
       "name": "Why?",
-      "vote": 3,
-      "views": 100,
+      "vote": 7,
+      "views": 10,
       "children": [
         {
           "name": "Why not?",
           "views": 10,
           "vote": -5
+        },
+        {
+          "name": "Easier to find people within such a large organisation",
+          "views": 20,
+          "vote": 5,
+          "children": [
+            {
+              "name": "Why?",
+              "views": 10,
+              "vote": 0,
+              "children": [
+                {
+                  "name": "More collaboration within Astra Zeneca",
+                  "views": 10,
+                  "vote": 20
+                }
+              ]
+            }
+          ]
         }
       ]
     },
