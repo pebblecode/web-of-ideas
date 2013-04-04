@@ -1,3 +1,6 @@
+body.inner {
+  background: none; }
+
 .node circle {
   fill: #fff;
   stroke: steelblue;

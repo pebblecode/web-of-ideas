@@ -85,12 +85,18 @@
           return circleSize(d.views);
         });
 
-    nodeEnter.append("svg:text")
+    nodeEnter.append("foreignObject")
         .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
         .attr("dy", ".35em")
         .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-        .text(function(d) { return d.name; })
-        .style("fill-opacity", 1e-6);
+        .style("fill-opacity", 1e-6)
+        .attr("width", 200)
+        .attr("height", 200)
+        .append("xhtml:body")
+          .attr("class", "inner")
+          .append("p")
+          .style("background-color", "none")
+          .text(function(d) { return d.name; });
 
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
