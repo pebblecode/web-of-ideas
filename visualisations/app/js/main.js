@@ -2,8 +2,8 @@
 (function (){
   'use strict';
 
-  var w = 960,
-    h = 2200;
+  var w = 700,
+    h = 500;
 
   var cluster = d3.layout.cluster()
       .size([h, w - 160]);
@@ -17,7 +17,7 @@
     .append("svg:g")
       .attr("transform", "translate(40, 0)");
 
-  d3.json("../data/flare.json", function(json) {
+  d3.json("../data/ideas.json", function(json) {
     var nodes = cluster.nodes(json);
 
     var link = vis.selectAll("path.link")
