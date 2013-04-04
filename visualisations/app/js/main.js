@@ -95,7 +95,6 @@
         .append("xhtml:body")
           .attr("class", "inner")
           .append("p")
-          .style("background-color", "none")
           .text(function(d) { return d.name; });
 
     // Transition nodes to their new position.
