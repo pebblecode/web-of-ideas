@@ -2,20 +2,20 @@
 (function (){
   'use strict';
 
-  var w = 700,
-    h = 500;
+  var w = 500,
+    h = 600;
 
   var cluster = d3.layout.cluster()
-      .size([h, w - 160]);
+      .size([h - 200, w]);
 
   var diagonal = d3.svg.diagonal()
-      .projection(function(d) { return [d.y, d.x]; });
+      .projection(function(d) { return [d.x, d.y]; });
 
   var vis = d3.select("#web-of-ideas").append("svg:svg")
       .attr("width", w)
       .attr("height", h)
     .append("svg:g")
-      .attr("transform", "translate(40, 0)");
+      .attr("transform", "translate(40, 30)");
 
   var voteDataClass = function voteDataClass(d) {
     var voteClass = "";
@@ -46,7 +46,7 @@
           return "node " + voteDataClass(d);
         })
         .attr("data-vote", function(d) { return d.vote; })
-        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     node.append("svg:circle")
         .attr("r", 4.5);
