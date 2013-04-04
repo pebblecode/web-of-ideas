@@ -19,6 +19,10 @@ body {
 
 .node {
   font: 10px sans-serif;
+
+  &.has-children {
+    cursor: pointer;
+  }
 }
 
 .link {

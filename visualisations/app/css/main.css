@@ -10,6 +10,8 @@ body.inner {
 
 .node {
   font: 10px sans-serif; }
+  .node.has-children {
+    cursor: pointer; }
 
 .link {
   fill: none;
