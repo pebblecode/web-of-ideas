@@ -1,7 +1,7 @@
 .node circle {
   fill: #fff;
   stroke: steelblue;
-  stroke-width: 1.5px; }
+  stroke-width: 3px; }
 
 .node {
   font: 10px sans-serif; }
@@ -12,13 +12,16 @@
   stroke-width: 1.5px; }
 
 .vote-positive circle {
-  stroke: blue;
+  stroke: blue; }
+.vote-positive.has-children circle {
   fill: blue; }
 
 .vote-negative circle {
-  stroke: red;
+  stroke: red; }
+.vote-negative.has-children circle {
   fill: red; }
 
 .vote-zero circle {
-  stroke: gray;
+  stroke: gray; }
+.vote-zero.has-children circle {
   fill: gray; }

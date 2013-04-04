@@ -74,7 +74,8 @@
     // Enter any new nodes at the parent's previous position.
     var nodeEnter = node.enter().append("svg:g")
         .attr("class", function (d) {
-          return "node " + voteDataClass(d);
+          var hasChildren = d._children ? " has-children" : "";
+          return "node " + voteDataClass(d) + hasChildren;
         })
         .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
         .on("click", function(d) { toggle(d); update(d); });
@@ -82,8 +83,7 @@
     nodeEnter.append("svg:circle")
         .attr("r", function(d) {
           return circleSize(d.views);
-        })
-        .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        });
 
     nodeEnter.append("svg:text")
         .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -100,14 +100,17 @@
     nodeUpdate.select("circle")
         .attr("r", function(d) {
           return circleSize(d.views);
-        })
-        .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        });
 
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
 
     // Transition exiting nodes to the parent's new position.
     var nodeExit = node.exit().transition()
+        .attr("class", function (d) {
+          var hasChildren = d._children ? " has-children" : "";
+          return "node " + voteDataClass(d) + hasChildren;
+        })
         .duration(duration)
         .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
         .remove();

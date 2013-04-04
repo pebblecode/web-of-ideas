@@ -7,7 +7,7 @@ body {
 .node circle {
   fill: #fff;
   stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke-width: 3px;
 }
 
 .node {
@@ -20,17 +20,35 @@ body {
   stroke-width: 1.5px;
 }
 
-.vote-positive circle {
-  stroke: blue;
-  fill: blue;
+.vote-positive {
+  circle {
+    stroke: blue;
+    // fill: lightsteelblue;
+  }
+
+  &.has-children circle {
+    fill: blue;
+  }
 }
 
-.vote-negative circle {
-  stroke: red;
-  fill: red;
+.vote-negative {
+  circle {
+    stroke: red;
+    // fill: #FFA7A1;
+  }
+
+  &.has-children circle {
+    fill: red;
+  }
 }
 
-.vote-zero circle {
-  stroke: gray;
-  fill: gray;
+.vote-zero {
+  circle {
+    stroke: gray;
+    // fill: #dddddd;
+  }
+
+  &.has-children circle {
+    fill: gray;
+  }
 }
