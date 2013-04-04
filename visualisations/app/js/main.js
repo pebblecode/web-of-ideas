@@ -2,7 +2,7 @@
 (function (){
   'use strict';
 
-  var m = [20, 120, 20, 120],
+  var m = [20, 10, 20, 10],
       w = 1280 - m[1] - m[3],
       h = 800 - m[0] - m[2],
       i = 0,
@@ -12,7 +12,7 @@
       .size([h, w]);
 
   var diagonal = d3.svg.diagonal()
-      .projection(function(d) { return [d.y, d.x]; });
+      .projection(function(d) { return [d.x, d.y]; });
 
   var vis = d3.select("#web-of-ideas").append("svg:svg")
       .attr("width", w + m[1] + m[3])
@@ -69,7 +69,7 @@
         .attr("class", function (d) {
           return "node " + voteDataClass(d);
         })
-        .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+        .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
         .on("click", function(d) { toggle(d); update(d); });
 
     nodeEnter.append("svg:circle")
@@ -86,7 +86,7 @@
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
         .duration(duration)
-        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     nodeUpdate.select("circle")
         .attr("r", 4.5)
@@ -98,7 +98,7 @@
     // Transition exiting nodes to the parent's new position.
     var nodeExit = node.exit().transition()
         .duration(duration)
-        .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+        .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
         .remove();
 
     var maxViews = 200,
