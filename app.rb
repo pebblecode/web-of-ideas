@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sinatra/flash'
 require 'sass'
 require 'pusher'
+require 'json'
 
 # Require all in lib directory
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
@@ -83,8 +84,20 @@ post '/api/thought' do
   side = params[:side]
 
   if VALID_SIDES.include? side
+    output = {}
     Pusher.trigger('ideas', 'idea', params)
+
+    status HTTP_STATUS_OK
+  else
+    output = {
+      :error => "#{side} cannot add thoughts"
+    }
+
+    status HTTP_STATUS_BAD_REQUEST
   end
+
+  content_type :json
+  return output.to_json
 end
 
 # -----------------------------------------------------------------------

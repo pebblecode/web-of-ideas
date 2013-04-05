@@ -6,6 +6,7 @@ gem 'sinatra-flash'
 gem 'rack'
 
 gem "pusher", "~> 0.11.3"
+gem 'json'
 
 # Views
 gem 'sass'

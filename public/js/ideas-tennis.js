@@ -83,7 +83,11 @@
         console.log(response);
       })
       .error(function(data) {
-        console.log(data);
+        var errorText = data.responseText,
+          errorData = JSON.parse(errorText);
+
+        console.log(errorData);
+        alert(errorData.error);
       });
   }
 
