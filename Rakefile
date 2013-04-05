@@ -5,12 +5,28 @@ require 'fileutils'
 # Server
 #####################################################################
 
-desc "Start the server using the development Procfile."
-task "server" do
-  start_server_cmd = "foreman start -f Procfile_development"
+# Ignore Procfile_development for now
+# desc "Start the server using the development Procfile."
+# task "server" do
+#   start_server_cmd = "foreman start -f Procfile_development"
+#   sh start_server_cmd
+# end
+
+desc "Start the server."
+task "server", [:port, :use_local_ip_address] do |t, args|
+  default_port = "4000"
+  host = "localhost"
+  if args.use_local_ip_address
+    host = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
+  end
+
+  port_arg = args.port
+  port = port_arg ? port_arg : default_port
+
+  puts "Start server: http://#{host}:#{port}/"
+  start_server_cmd = "bundle exec shotgun --server=thin --host=#{host} config.ru -p #{port}"
   sh start_server_cmd
 end
-
 
 #####################################################################
 # Deploy to staging/production
