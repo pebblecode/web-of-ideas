@@ -2,6 +2,11 @@
 (function (){
   'use strict';
 
+  var App = {
+    userEl: $("#user"),
+    historyEl: $("#history")
+  }
+
   // Enable pusher logging - don't include this in production
   Pusher.log = function(message) {
     if (window.console && window.console.log) window.console.log(message);
@@ -11,13 +16,16 @@
   var channel = pusher.subscribe('ideas');
   channel.bind('idea', function(data) {
     console.log(data);
-    var message = "<p>" + data.thought + "</p>";
-    $("#ideas-tennis").append(message);
+    var userHtml = "<span class='user'>" + data.user + "</span>",
+      message = "<p>" + data.thought + userHtml + "</p>";
+    App.historyEl.append(message);
   });
 
   function sendThought(thought) {
-    var url = "/api/thought";
+    var url = "/api/thought",
+      user = App.userEl.val();
     var thoughtData = {
+      user: user,
       thought: thought
     };
 
@@ -43,4 +51,9 @@
       return true;
     }
   });
+
+  // Random user name
+  var randomNumber = Math.floor(Math.random() * 10000) + 1,
+    randomUserName = "user" + randomNumber;
+  App.userEl.val(randomUserName);
 })();

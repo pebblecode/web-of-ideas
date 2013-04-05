@@ -77,10 +77,8 @@ end
 #
 
 post '/api/thought' do
-  thought = params[:thought]
   puts params
-  thought_hash = { thought: thought }
-  Pusher.trigger('ideas', 'idea', thought_hash)
+  Pusher.trigger('ideas', 'idea', params)
 end
 
 # -----------------------------------------------------------------------
