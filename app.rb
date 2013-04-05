@@ -3,7 +3,6 @@
 require 'sinatra'
 require 'sinatra/flash'
 require 'sass'
-require 'haml'
 require 'pusher'
 
 # Require all in lib directory
@@ -15,7 +14,6 @@ class App < Sinatra::Application
   set :config, YAML.load_file("#{root}/config/config.yml")[settings.environment.to_s]
 
   set :environment, ENV["RACK_ENV"] || "development"
-  set :haml, { :format => :html5 }
 
   ######################################################################
   # Configurations for different environments
@@ -68,9 +66,22 @@ end
 
 get '/' do
   @page_name = "home"
-  haml :index, :layout => :'layouts/application'
+
+  erb :index, :layout => :'layouts/application'
 end
 
+
+# ----------------------------------------------------------------------
+# API
+# ----------------------------------------------------------------------
+#
+
+post '/api/thought' do
+  thought = params[:thought]
+  puts params
+  thought_hash = { thought: thought }
+  Pusher.trigger('ideas', 'idea', thought_hash)
+end
 
 # -----------------------------------------------------------------------
 # Error handling
@@ -84,5 +95,5 @@ end
 error do
   @page_name = "error"
   @is_error = true
-  haml :error, :layout => :'layouts/application'
+  erb :error, :layout => :'layouts/application'
 end

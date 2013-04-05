@@ -10,14 +10,18 @@
   var pusher = new Pusher('48376e31f1c1d5d2e85c');
   var channel = pusher.subscribe('ideas');
   channel.bind('idea', function(data) {
+    console.log(data);
     var message = "<p>" + data.thought + "</p>";
     $("#ideas-tennis").append(message);
   });
 
   function sendThought(thought) {
-    var url = "http://localhost:4000/api/thought";
+    var url = "/api/thought";
+    var thoughtData = {
+      thought: thought
+    };
 
-    $.post(url, thought)
+    $.post(url, thoughtData)
       .success(function(response) {
         console.log(response);
       })
@@ -27,7 +31,7 @@
   }
 
   // Pressing enter submits form
-  $("#message textarea").keypress(function (e) {
+  $("#thought").keypress(function (e) {
     if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
       var textarea = $(e.target),
           thought = textarea.val();
