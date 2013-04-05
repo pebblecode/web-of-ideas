@@ -69,26 +69,29 @@
   }
 
   function sendThought(thought) {
-    var url = "/api/thought",
-      user = App.userEl.val(),
-      side = getSide();
-    var thoughtData = {
-      user: user,
-      thought: thought,
-      side: side
-    };
+    if (thought.length > 0) {
+      var url = "/api/thought",
+        user = App.userEl.val(),
+        side = getSide();
 
-    $.post(url, thoughtData)
-      .success(function(response) {
-        console.log(response);
-      })
-      .error(function(data) {
-        var errorText = data.responseText,
-          errorData = JSON.parse(errorText);
+      var thoughtData = {
+        user: user,
+        thought: thought,
+        side: side
+      };
 
-        console.log(errorData);
-        alert(errorData.error);
-      });
+      $.post(url, thoughtData)
+        .success(function(response) {
+          console.log(response);
+        })
+        .error(function(data) {
+          var errorText = data.responseText,
+            errorData = JSON.parse(errorText);
+
+          console.log(errorData);
+          alert(errorData.error);
+        });
+    }
   }
 
   function submitThought() {
