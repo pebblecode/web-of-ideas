@@ -1,0 +1,14 @@
+base: &base
+  http_auth_username: app
+  http_auth_password: app
+  pusher_app_id: '40966'
+  pusher_key: '48376e31f1c1d5d2e85c'
+  pusher_secret: '0d8f89115fe17049052f'
+development:
+  <<: *base
+production:
+  <<: *base
+staging:
+  <<: *base
+test:
+  <<: *base
