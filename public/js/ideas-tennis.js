@@ -5,7 +5,8 @@
   var App = {
     userEl: $("#user"),
     historyEl: $("#history"),
-    thoughtEl: $("#thought")
+    thoughtEl: $("#thought"),
+    thoughtSubmitEl: $("#thought-submit")
   }
 
   // Enable pusher logging - don't include this in production
@@ -53,6 +54,11 @@
     sendThought(thought);
     App.thoughtEl.val("");
   }
+
+  App.thoughtSubmitEl.click(function (e) {
+    e.preventDefault();
+    submitThought();
+  });
 
   // Pressing enter submits form
   App.thoughtEl.keypress(function (e) {
