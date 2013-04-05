@@ -7,6 +7,7 @@
     historyEl: $("#history"),
     thoughtEl: $("#thought"),
     thoughtSubmitEl: $("#thought-submit"),
+    sideButtons: $("#side button"),
 
     init: function () {
       // Enable pusher logging - don't include this in production
@@ -43,7 +44,22 @@
       var randomNumber = Math.floor(Math.random() * 10000) + 1,
         randomUserName = "user" + randomNumber;
       App.userEl.val(randomUserName);
+
+      // Side button click
+      App.sideButtons.click(function (e) {
+        var button = $(e.target),
+          side = button.attr("data-side");
+
+        handleSideChange(side);
+      });
+
+      // Set initial side
+      handleSideChange(getSide());
     }
+  }
+
+  function handleSideChange(side) {
+    console.log(side);
   }
 
   function getSide() {
