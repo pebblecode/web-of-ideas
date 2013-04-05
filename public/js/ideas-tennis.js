@@ -4,7 +4,8 @@
 
   var App = {
     userEl: $("#user"),
-    historyEl: $("#history")
+    historyEl: $("#history"),
+    thoughtEl: $("#thought")
   }
 
   // Enable pusher logging - don't include this in production
@@ -46,14 +47,17 @@
       });
   }
 
-  // Pressing enter submits form
-  $("#thought").keypress(function (e) {
-    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-      var textarea = $(e.target),
-          thought = textarea.val();
+  function submitThought() {
+    var thought = App.thoughtEl.val();
 
-      sendThought(thought);
-      textarea.val("");
+    sendThought(thought);
+    App.thoughtEl.val("");
+  }
+
+  // Pressing enter submits form
+  App.thoughtEl.keypress(function (e) {
+    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+      submitThought();
       return false;
     } else {
       return true;
