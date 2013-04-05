@@ -71,7 +71,7 @@ module.exports = function (grunt) {
       //   tasks: ['jshint']
       // },
       html: {
-        files: 'app/index.html',
+        files: 'app/*.html',
         tasks: ['livereload']
       },
       css: {
