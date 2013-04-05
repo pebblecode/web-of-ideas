@@ -8,6 +8,8 @@ require 'pusher'
 # Require all in lib directory
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 
+VALID_SIDES = ["red", "blue"]
+
 class App < Sinatra::Application
 
   # Load config.yml into settings.config variable
@@ -78,7 +80,11 @@ end
 
 post '/api/thought' do
   puts params
-  Pusher.trigger('ideas', 'idea', params)
+  side = params[:side]
+
+  if VALID_SIDES.include? side
+    Pusher.trigger('ideas', 'idea', params)
+  end
 end
 
 # -----------------------------------------------------------------------

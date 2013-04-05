@@ -17,16 +17,24 @@
   channel.bind('idea', function(data) {
     console.log(data);
     var userHtml = "<span class='user'>" + data.user + "</span>",
-      message = "<p>" + data.thought + userHtml + "</p>";
+      message = "<p class='" + data.side + "'>" + data.thought + userHtml + "</p>";
     App.historyEl.append(message);
   });
 
+  function getSide() {
+    var activeSide = $("#side .active").first(),
+      side = activeSide.attr("data-side");
+    return side;
+  }
+
   function sendThought(thought) {
     var url = "/api/thought",
-      user = App.userEl.val();
+      user = App.userEl.val(),
+      side = getSide();
     var thoughtData = {
       user: user,
-      thought: thought
+      thought: thought,
+      side: side
     };
 
     $.post(url, thoughtData)

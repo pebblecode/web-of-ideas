@@ -5,6 +5,10 @@
 /* Variables
 ----------------------------------------------------------------------*/
 
+$blue: blue;
+$red: red;
+$gray: gray;
+
 /* Colours */
 
 
@@ -21,8 +25,32 @@ body {
 
 // Thoughts
 
-#history .user {
-  color: #ddd;
-  font-style: italic;
-  margin-left: 20px;
+#history {
+  .blue {
+    color: $blue;
+  }
+
+  .red {
+    color: $red;
+  }
+
+  .user {
+    color: #ddd;
+    font-style: italic;
+    margin-left: 20px;
+  }
+}
+
+#side {
+  .red {
+    color: $red;
+  }
+
+  .blue {
+    color: $blue;
+  }
+
+  .spectator {
+
+  }
 }
